@@ -24,38 +24,14 @@ class _BookingCourtCardState extends State<BookingCourtCard> {
               child: Column(
                 mainAxisSize: MainAxisSize.min, // Avoid potential overflow
                 children: [
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Name'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your name';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) => setState(() => _name = value!),
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Email'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) => setState(() => _email = value!),
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Phone Number'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your phone number';
-                      }
-                      // Add more specific validation if needed (e.g., format)
-                      return null;
-                    },
-                    onSaved: (value) => setState(() => _phoneNumber = value!),
-                  ),
-                ],
+              // Add confirmation text here
+              Text(
+                'Are you sure you want to join this session?',
+                style: TextStyle(fontSize: 16.0),
+              ),
+              SizedBox(height: 10.0), // Add some spacing
+              // Your existing form fields go here (replace with "...")
+            ],
               ),
             ),
           ),
