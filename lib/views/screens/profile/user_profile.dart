@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:flutter_app/views/widget/profile_grid_view.dart';
@@ -17,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'username',
+          'Profile',
         ),
         actions: [
           IconButton(
@@ -36,129 +37,62 @@ class ProfileScreen extends StatelessWidget {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              elevation: 0,
-              // pinned: true,
-              stretch: true,
-              expandedHeight: 300,
-              flexibleSpace: const FlexibleSpaceBar(
-                stretchModes: [StretchMode.zoomBackground],
-                background: Image(
-                  image: AssetImage('assets/images/sachin.jpeg'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,  // Center content vertically
+          children: [
+            Container(
+              width: 150.0,
+              height: 150.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image:NetworkImage("https://th.bing.com/th?id=OIP.04DMgWld3haXBdCT8ZZUkAHaFe&w=290&h=214&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"),
                   fit: BoxFit.cover,
                 ),
               ),
-              bottom: PreferredSize(
-                  preferredSize: const Size.fromHeight(90),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: (size.width / 7)),
-                          child: Container(
-                            height: 70,
-                            decoration: BoxDecoration(
-                              // color: ThemeData.from(colorScheme: ColorScheme.light()),
-                              // color: profilePageColordark,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.black
-                                  : Colors.white,
-
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                          left: size.width / 2 - size.width / 7,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.red,
-                            radius: size.width / 7,
-                          )),
-                      Positioned(
-                        bottom: 10,
-                        child: SizedBox(
-                          width: size.width,
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '210M',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  Text(
-                                    'Followers',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  Text(
-                                    'Following',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
             ),
-            UserDetails(
-                size: size,
-                userName: 'userName',
-                bio: 'bio',
-                buttonText: 'Edit profile'),
-          ];
-        },
-        body: const Column(
-          children: [
-            Expanded(
-                child: DefaultTabController(
-                    length: 2,
-                    child: Column(
-                      children: [
-                        TabBar(tabs: [
-                          Tab(
-                            text: 'Photos',
-                          ),
-                          Tab(
-                            text: 'Videos',
-                          )
-                        ]),
-                        Expanded(
-                            child: TabBarView(children: [
-                          ProfileGridView(
-                            itemCount: 30,
-                          ),
-                          ProfileGridView(
-                            itemCount: 30,
-                          ),
-                        ]))
-                      ],
-                    )))
+            SizedBox(height: 20.0), // Add some spacing
+            Text(
+              'Welcome, John Doe!',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            SizedBox(height: 20.0), // Add some spacing
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,  // Center buttons horizontally
+              children: [
+                NavigationButton(text: 'Settings', onPressed: () => print('Settings Pressed')),
+                SizedBox(width: 10.0), // Add spacing between buttons
+               
+                NavigationButton(text: 'History', onPressed: () => print('History Pressed')),
+                SizedBox(width: 10.0), // Add spacing between buttons
+                NavigationButton(text: 'Favorites', onPressed: () => print('Favorites Pressed')),
+                
+              ],
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+class NavigationButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const NavigationButton({required this.text, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(text),
+      style: ElevatedButton.styleFrom(
+      
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0), // Set button border radius
+        ),
+        minimumSize: Size(150.0, 40.0),
       ),
     );
   }
