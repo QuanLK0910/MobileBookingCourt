@@ -27,16 +27,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                label: '\u2022'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: '\u2022'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.add_box_outlined), label: '\u2022'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.notifications_none), label: '\u2022'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: '\u2022')
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle),
+                label: 'Book',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.notifications),
+                label: 'Noti',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.menu),
+                label: 'Menu',
+              ),
+            
           ]),
       body: SafeArea(child: screens[_currentIndex]),
     );

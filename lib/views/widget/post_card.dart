@@ -1,120 +1,140 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/core/color.dart';
+
+
 
 Widget postCard(Size size) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-      width: size.width,
-      decoration: const BoxDecoration(color: Colors.transparent),
+  return Container(
+      padding: const EdgeInsets.all(16.0),
+      color: Colors.grey[200],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListTile(
-            leading: const CircleAvatar(
-              backgroundColor: Colors.amber,
-            ),
-            title: const Text('username'),
-            trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert,
-                )),
-          ),
-          Container(
-            height: 280,
-            decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: AssetImage(
-                      'assets/images/sachin.jpeg',
-                    ),
-                    fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(20)),
-          ),
-          // const SizedBox(
-          //   height: 10,
-          // ),
           Row(
             children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_outline,
-                    size: 28,
-                  )),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.comment_bank_outlined,
-                    size: 28,
-                  )),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.send,
-                    size: 28,
-                  )),
-              //   SizedBox(
-              //     width: 10,
-              //   ),
-              //   Icon(
-              //     Icons.favorite_border,size: 30,
-              //   ),
-              //   SizedBox(
-              //     width: 8,
-              //   ),
-              //   Icon(Icons.comment_bank_outlined,size: 30,),
-              //   SizedBox(
-              //     width: 8,
-              //   ),
-              //  Transform.rotate(
-              //   angle: -45 * 0.0174533,
-              //   child: Icon(Icons.send_rounded,size: 30,)),
-              const Spacer(),
-              // Icon(Icons.bookmark_border,size: 30,),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.bookmark_border,
-                    size: 28,
-                  )),
-              const SizedBox(
-                width: 10,
+              CircleAvatar(
+                backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/63.jpg"),
+              ),
+              const SizedBox(width: 10.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Alex Thompson",
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(formatDate(DateTime.now().subtract(const Duration(days: 1)),)),
+                ],
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
+          const SizedBox(height: 10.0),
+          Text("something here"),
+          const SizedBox(height: 10.0),
+          Row(
+            children: [
+              // ClipRRect for image and border
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.network(
+                  "https://images.unsplash.com/photo-1503220317375-aaad61436b1b",
+                  fit: BoxFit.cover,
+                  height: 100.0,
+                ),
+              ),
+              const SizedBox(width: 10.0),
+              // Details column
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      // Row for details icons and text
+                      children: [
+                        // People icon and text
+                        Row(
+                          children: [
+                            Icon(Icons.group, color: Colors.black, size: 16.0),
+                            Text(1.toString(),
+                                style: const TextStyle(fontSize: 12.0)),
+                          ],
+                        ),
+                        const SizedBox(width: 5.0),
+                        // Location icon and text
+                        Row(
+                          children: [
+                            Icon(Icons.location_on,
+                                color: Colors.black, size: 16.0),
+                            Text("Ho chi Minh",
+                                style: const TextStyle(fontSize: 12.0)),
+                          ],
+                        ),
+                        const SizedBox(width: 5.0),
+                      ],
+                    ),
+                    const SizedBox(height: 5.0), // Add spacing between rows
+                    Row(
+                      // New row for additional details
+                      children: [
+                        Icon(Icons.sports_basketball,
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            size: 16.0), // Adjust icon based on sport type
+                        Text("tennis",
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 0, 0, 0),
+                                fontSize: 12.0)),
+                      ],
+                    ),
+                    const SizedBox(height: 10.0),
+                    Icon(Icons.access_time,
+                        color: const Color.fromARGB(255, 0, 0, 0), size: 16.0),
+                    Text(formatDate(DateTime.now().subtract(const Duration(days: 1),)),
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 12.0)),
+                    const SizedBox(width: 5.0),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text(
-              '200 likes',
-              style: TextStyle(fontSize: 18),
-            ),
+          Row(
+            mainAxisAlignment:
+                MainAxisAlignment.spaceBetween, // Align icons at opposite ends
+            children: [
+              Row(
+                children: [
+                  // Like icon
+                  IconButton(
+                    icon: Icon(
+                      Icons.favorite_border,
+                      color: Colors.red,
+                    ),
+                    onPressed: () =>
+                        print('Like button pressed'), // Example action
+                  ),
+                  Text('Like'),
+                ],
+              ),
+              Row(
+                children: [
+                  // Comment icon
+                  IconButton(
+                    icon: Icon(Icons.comment),
+                    onPressed: () =>
+                        print('Comment button pressed'), // Example action
+                  ),
+                  Text('Comment'),
+                ],
+              ),
+             
+            ],
           ),
-          const SizedBox(
-            height: 7,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text(
-              'Caption of the post',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text(
-              '15 minutes ago',
-              style: TextStyle(fontSize: 16, color: kGreyColor),
-            ),
-          )
+           
         ],
-      ),
-    ),
-  );
+        
+      ));
+      
+}
+String formatDate(DateTime dateTime) {
+  // Implement your desired date/time formatting logic here
+  // This example returns a simple string representation
+  return dateTime.toString();
 }

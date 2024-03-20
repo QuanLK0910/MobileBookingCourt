@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/views/widget/booking_court_card.dart';
+import 'package:flutter_app/views/widget/filter_search_bar.dart';
 
-import 'package:flutter_app/views/widget/user_title.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -13,18 +14,15 @@ class SearchScreen extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
         child: Column(
           children: [
-            const CupertinoSearchTextField(
-             backgroundColor: Color.fromARGB(255, 65, 64, 64),
-             
-             
-            ),Expanded(
+            FilterCalendarSearchBar(),
+            Expanded(
               child: SizedBox(
-                child: ListView.builder(
-                  itemCount: 20 ,itemBuilder: (context, index) {
-                return   UserTitle(text: 'username',);
-                },)
-                
-              ),
+                  child: ListView.builder(
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return (BookingCourtCard());
+                },
+              )),
             )
           ],
         ),

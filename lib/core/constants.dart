@@ -9,6 +9,7 @@ final screens = [
   SearchScreen(),
   // UploadPost(),
   NotificationScreen(),
-  ProfileScreen()
+  ProfileScreen(),
+  
 ];
 final googleSignIn= GoogleSignIn();
