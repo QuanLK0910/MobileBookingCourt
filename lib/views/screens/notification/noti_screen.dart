@@ -7,11 +7,26 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('notifications',style: TextStyle(fontSize: 25),),),
-      body:  ListView.builder(
-                  itemCount: 20 ,itemBuilder: (context, index) {
-                return   UserTitle(text: 'atx.ul_ liked your post',time: '1h', );
-                },) ,
+      appBar: AppBar(
+        title: Row(
+          // Use Row to arrange elements horizontally
+          children: [
+            Image.asset('assets/images/logo.png',
+                width: 150), // Add logo image
+            Spacer(), // Add spacing between logo and text
+            Text(
+              'Notifications',
+              style: TextStyle(fontSize: 25.0),
+            ),
+          ],
+        ),
+      ),
+      body: ListView.builder(
+        itemCount: 20,
+        itemBuilder: (context, index) {
+          return NotificationCard();
+        },
+      ),
     );
   }
 }

@@ -1,28 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/core/color.dart';
 
-class UserTitle extends StatelessWidget {
-  final String text;
-  final String? time;
-  UserTitle({
-    super.key,
-    required this.text,
-    this.time,
-  });
-
+class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListTile(
-          leading: const CircleAvatar(
-            radius: 20,
-          ),
-          title: RichText(
-              text: TextSpan(children: [
-            TextSpan(text: text),
-            TextSpan(text: '  ' + (time?? ''), style: TextStyle(color: kGreyColor))
-          ]))),
+    return Card(
+     child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+          // Check if avatar is available
+              CircleAvatar(
+                backgroundImage: NetworkImage("https://th.bing.com/th/id/OIP.DpK2uYJq_8hjMv7JGXJG7gHaI-?w=142&h=180&c=7&r=0&o=5&pid=1.7"),
+                radius: 24.0,
+              ),
+            SizedBox(width: 16.0), // Add spacing between avatar and content
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "A user have create new tennis session",
+                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 4.0),
+                  Text("Come and join me nowww"),
+                  SizedBox(height: 8.0),
+                  Text(
+                    "09/10/2024"
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
+
+  
 }

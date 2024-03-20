@@ -54,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: 20.0), // Add some spacing
             Text(
-              'Welcome, John Doe!',
+              'Welcome, John Doe! ',
               style: TextStyle(fontSize: 20.0),
             ),
             SizedBox(height: 20.0), // Add some spacing
